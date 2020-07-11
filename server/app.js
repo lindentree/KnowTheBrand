@@ -5,9 +5,9 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const routes = require('./routes/index');
 
+//connect to databse
+require('./config/database');
 
-const MongoClient = require('mongodb').MongoClient
-MongoClient.connect('mongodb://localhost:27017')
 
 const app = express();
 
@@ -45,7 +45,7 @@ app.use(function (err, req, res, next) {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, function () {
-  console.log('Example app listening on port 8000!')
+  console.log('Example app listening on port 3000!')
 })
 
 
