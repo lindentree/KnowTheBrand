@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 
 import TextInput from './components/TextInput';
+import ImageUpload from './components/ImageUpload';
 import './App.css';
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       
       </header>
           <TextInput />
+          <ImageUpload />
       
     </div>
   );
