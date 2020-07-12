@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const routes = require('./routes/index');
 
-//connect to databse
+//connect to database
 require('./config/database');
 
 
@@ -20,7 +20,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 app.use('/', routes);
 app.use('/user', routes);
@@ -42,12 +42,11 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = 8001;
 
 app.listen(PORT, function () {
-  console.log('Example app listening on port 3000!')
+  console.log(`Example app listening on port ${PORT}!`)
 })
-
 
 
 module.exports = app;

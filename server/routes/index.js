@@ -6,9 +6,13 @@ const db = require('../seedDB');
 const cheerio = require('cheerio');
 const request = require('request');
 
+router.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 router.get('/food', function (req, res, next) {
   res.send(
-    JSON.stringify(db.foodInfo)
+    db.foodInfo
   );
 });
 
