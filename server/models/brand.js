@@ -9,7 +9,8 @@ const brandSchema = new Schema({
   description: {
     type: String,
     required: true,
-  }
+  },
+  headquarters: String
 },
   {
     timestamps: true

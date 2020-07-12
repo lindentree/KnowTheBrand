@@ -11,21 +11,17 @@ require('./config/database');
 
 const app = express();
 
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'build')));
 
-app.use('/', routes);
-app.use('/user', routes);
-app.use('/food', routes);
-app.use('/:name', routes);
+app.use('/api/food', routes);
+// app.use('/', routes);
+// app.use('/user', routes);
+// app.use('/food', routes);
+// app.use('/:name', routes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
