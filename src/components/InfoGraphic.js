@@ -12,16 +12,17 @@ const xmlToReact = new XMLToReact({
 
 
 export default function InfoGraphic(props) {
-  const jsonXML = parseString(props.wolfram, (err, result)=>{
-    console.dir(result);
-  });
+  // const jsonXML = parseString(props.wolfram, (err, result)=>{
+  //   console.dir(result);
+  // });
 
-  const dataArray = Object.values(jsonXML);
+  //const dataArray = Object.values(jsonXML);
 
   return (
      <div>
+        {props.wolfram}
 
-        <XMLViewer xml={props.wolfram} />
+        //<XMLViewer xml={props.wolfram} />
      </div>
 
     )

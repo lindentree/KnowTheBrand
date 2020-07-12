@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+
 
 
 export default class ImageUpload extends React.Component {
@@ -24,7 +26,6 @@ export default class ImageUpload extends React.Component {
     }, () =>{
       console.log(this.state.selectedFile)
     })
-
 
 
   }
@@ -89,7 +90,7 @@ export default class ImageUpload extends React.Component {
   return (
     <div className="container">
 
-      <h1>What's on the image?</h1>
+      <h1>What's in the image?</h1>
       <p className="lead">Image recognition as a service powered by Rust, Tensorflow, and Node.js. <a href="https://www.secondstate.io/articles/artificial-intelligence/">How it works</a></p>
 
       <form id="infer" encType="multipart/form-data">
@@ -102,12 +103,11 @@ export default class ImageUpload extends React.Component {
                   Upload! 
         </button> 
 
-  <button type="submit"  id="recognize" onClick={this.imageAnalyze}>Recognize</button>
       </form>
 
       <div className="jumbotron">
         <p id="result" className="lead">
-          {this.state.analysis}
+          { ReactHtmlParser(this.state.analysis)}
           
         </p>
       </div>

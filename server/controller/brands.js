@@ -6,20 +6,23 @@ module.exports = {
 }
 
 
-function find(req, res) {
-  let name = req.params.name
-  console.log(req.params)
-  Brand.find({ name: name })
-    .then((err, brand) => {
-      if (err) res.send(err);
+async function find(req, res) {
 
-      res.send(JSON.stringify(brand))
-    });
+  try {
+    let name = req.params.name
+    const result = await Brand.find({ name: name })
+    console.log("result: ", result)
+    res.send(result);
+
+  } catch(err) {
+    return res.status(500).send({
+        message: err.message
+      })
+
+  }
 }
 
-//TODO check JSON.parse(JSON.stringify(brand)) 
-
-function show(req, res){
+function show(req, res) {
   //grab all from db
 
 }
