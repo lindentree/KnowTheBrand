@@ -25,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.use('/', routes);
 app.use('/user', routes);
 app.use('/food', routes);
+app.use('/:name', routes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

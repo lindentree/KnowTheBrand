@@ -17,7 +17,7 @@ export default function TextInput(props) {
   const handleSubmit = (event) => {
 
     //alert('A name was submitted: ' + brand);
-    wolframQuery(brand);
+    searchQuery(brand);
     event.preventDefault();
   }
 
@@ -37,7 +37,15 @@ export default function TextInput(props) {
 
   const genericQuery = (search_term) => {
 
-    axios.get('/food')
+    axios.get(`/food`)
+      .then(response => {
+        setResult(JSON.stringify(response.data));
+      });
+  }
+
+  const searchQuery = (search_term) => {
+
+    axios.get(`/${search_term}`)
       .then(response => {
         setServed(JSON.stringify(response.data));
       });
@@ -57,8 +65,9 @@ export default function TextInput(props) {
         <input type="submit" value="Submit"  />
       </form>
 
-      <InfoGraphic wolfram={result}/>
-      <div>{served}</div>
+      <div>
+        <h2>{served}</h2>
+      </div>
     </div>
 
     )
