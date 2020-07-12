@@ -5,6 +5,19 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const routes = require('./routes/index');
 
+const fileUpload = require('express-fileupload');
+const { infer } = require('./tensorflow/pkg/ai_starter_lib.js');
+
+const fs = require('fs');
+const data_model = fs.readFileSync("./tensorflow/mobilenet_v2_1.4_224_frozen.pb");
+
+const labels = [];
+fs.readFileSync('./tensorflow/imagenet_slim_labels.txt','utf-8').split(/\r?\n/).forEach(
+  function(line){
+    labels.push(line);
+  }
+);
+
 //connect to database
 require('./config/database');
 
@@ -25,6 +38,28 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.use('/', routes);
 app.use('/user', routes);
 app.use('/food', routes);
+
+app.post('/infer', function (req, res) {
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).send('No files were uploaded.');
+  }
+  console.log ("Received " + req.files.image_file.name + " with size: " + req.files.image_file.size);
+
+  let image_file = req.files.image_file;
+  console.time(image_file.name);
+  var result = JSON.parse( infer(data_model, image_file.data, 224, 224) );
+  console.timeEnd(image_file.name);
+
+  var confidence = "low";
+  if (result[0] > 0.75) {
+    confidence = "very high";
+  } else if (result[0] > 0.5) {
+    confidence = "high";
+  } else if (result[0] > 0.2) {
+    confidence = "medium";
+  }
+  res.send("Detected <b>" + labels[result[1]-1] + "</b> with <u>" + confidence + "</u> confidence.")
+})
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

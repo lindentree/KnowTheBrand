@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "start": "nodemon ./bin/www"
+        "start": "nodemon -r esm ./bin/www"
     },
     "dependencies": {
         "cheerio": "^1.0.0-rc.3",
@@ -17,4 +17,5 @@
         "nodemon": "^2.0.4",
         "request": "^2.88.2"
     }
+
 }
