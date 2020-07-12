@@ -7,22 +7,28 @@ module.exports = {
 
 
 async function find(req, res) {
-
   try {
     let name = req.params.name
     const result = await Brand.find({ name: name })
-    console.log("result: ", result)
     res.send(result);
 
-  } catch(err) {
+  } catch (err) {
     return res.status(500).send({
-        message: err.message
-      })
+      message: err.message
+    })
 
   }
 }
 
-function show(req, res) {
-  //grab all from db
+async function show(req, res) {
+  try {
+    const result = await Brand.find({})
+    res.send(result);
 
+  } catch (err) {
+    return res.status(500).send({
+      message: err.message
+    })
+
+  }
 }
