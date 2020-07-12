@@ -8,10 +8,14 @@ export default class ImageUpload extends React.Component {
 
   constructor(props) {
     super(props);
-      this.state = {
+    this.myRef = React.createRef();
+
+
+    this.state = {
         selectedFile: null,
-        analysis: ''
-      }
+        analysis: '',
+        url: ''
+     }
 
       this.onFileChange = this.onFileChange.bind(this);
       this.onFileUpload = this.onFileUpload.bind(this);
@@ -25,6 +29,15 @@ export default class ImageUpload extends React.Component {
       selectedFile: event.target.files[0],
     }, () =>{
       console.log(this.state.selectedFile)
+      const reader = new FileReader();
+      const current = this.myRef.current;
+      current.file = this.state.selectedFile;
+
+       reader.onload = (e) => {
+          current.src = e.target.result;
+      }
+      reader.readAsDataURL(this.state.selectedFile);
+
     })
 
 
@@ -90,8 +103,18 @@ export default class ImageUpload extends React.Component {
   return (
     <div className="container">
 
-      <h1>What's in the image?</h1>
-      <p className="lead">Image recognition as a service powered by Rust, Tensorflow, and Node.js. <a href="https://www.secondstate.io/articles/artificial-intelligence/">How it works</a></p>
+      <h1>Tell me about the brand I'm looking at</h1>
+      <p className="lead">ML Recognition powered by Rust, Tensorflow, and Node.js.</p>
+
+         <img 
+          id="preview"
+          ref={this.myRef}
+          style={{
+            width: "10%",
+            height: "10%",
+      
+          }}
+        /> 
 
       <form id="infer" encType="multipart/form-data">
         <div>
@@ -99,11 +122,14 @@ export default class ImageUpload extends React.Component {
           <input type="file" className="form-control-file" id="image_file" name="image_file" onChange={this.onFileChange}/>
         </div>
 
+
         <button onClick={this.onFileUpload}> 
                   Upload! 
         </button> 
 
       </form>
+
+
 
       <div className="jumbotron">
         <p id="result" className="lead">
