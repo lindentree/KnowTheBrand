@@ -11,6 +11,7 @@ export default function TextInput(props) {
   const [served, setServed] = useState('');
 
   const handleChange = (event) => {
+
     setBrand(event.target.value);
   }
 
@@ -47,8 +48,8 @@ export default function TextInput(props) {
 
     axios.get(`api/food/${search_term}`)
       .then(response => {
-        alert(response.data.brands)
-        setServed(JSON.stringify(response.data));
+        let results = response.data[0].brands;
+        setServed(JSON.stringify(results));
       });
   }
 
@@ -67,7 +68,7 @@ export default function TextInput(props) {
       </form>
 
       <div>
-        <h3>Here are some of the brands affiliated with {brand}: {served}</h3>
+        <h4>Here are some of the brands affiliated with {brand.charAt(0).toUpperCase() + brand.slice(1)}: {served}</h4>
       </div>
     </div>
 
