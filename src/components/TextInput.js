@@ -47,6 +47,7 @@ export default function TextInput(props) {
 
     axios.get(`api/food/${search_term}`)
       .then(response => {
+        alert(response.data.brands)
         setServed(JSON.stringify(response.data));
       });
   }
@@ -66,7 +67,7 @@ export default function TextInput(props) {
       </form>
 
       <div>
-        <h2>{served}</h2>
+        <h3>Here are some of the brands affiliated with {brand}: {served}</h3>
       </div>
     </div>
 
