@@ -4,6 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const routes = require('./routes/index');
+const brandCtrl = require('./controller/brands');
+
 require('dotenv').config();
 
 const fileUpload = require('express-fileupload');
@@ -22,6 +24,15 @@ fs.readFileSync('./tensorflow/imagenet_slim_labels.txt','utf-8').split(/\r?\n/).
 //connect to database
 require('./config/database');
 
+// const resultParseQuery = async (result) => {
+//   let affiliates = null;
+//   if (result==='water bottle') {
+//     brandCtrl.find
+
+//   }
+
+// }
+
 const app = express();
 
 // view engine setup
@@ -38,7 +49,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 app.use('/api/food', routes);
 
-app.post('/infer', function (req, res) {
+app.post('/infer', function (req, res, next) {
 
   if (!req.files || Object.keys(req.files).length === 0) {
     return res.status(400).send('No files were uploaded.');
@@ -59,6 +70,7 @@ app.post('/infer', function (req, res) {
   } else if (result[0] > 0.2) {
     confidence = "medium";
   }
+
   res.send("Detected <b>" + labels[result[1]-1] + "</b> with <u>" + confidence + "</u> confidence.")
 })
 

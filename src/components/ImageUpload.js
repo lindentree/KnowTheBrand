@@ -2,8 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
-
-
 export default class ImageUpload extends React.Component {
 
   constructor(props) {
@@ -13,8 +11,7 @@ export default class ImageUpload extends React.Component {
 
     this.state = {
         selectedFile: null,
-        analysis: '',
-        url: ''
+        analysis: ''
      }
 
       this.onFileChange = this.onFileChange.bind(this);
@@ -43,14 +40,6 @@ export default class ImageUpload extends React.Component {
 
   }
 
-  // imageAnalyze = (event) => {
-  //   event.preventDefault();
-  //   axios.post('/infer', file)
-  //      .then(response => {
-       
-
-  //     });
-  // }
 
   onFileUpload(event) {
     event.preventDefault();
@@ -65,35 +54,25 @@ export default class ImageUpload extends React.Component {
        this.state.selectedFile
       )
 
-
-
       const headers = {
        'Content-Type': 'multipart/form-data'
       }
 
-      console.log('firing test', formData.get('myFile'))
-
+      //console.log('firing test', formData.get('myFile'))
 
       axios.post('/infer', formData)
        .then(response => {
        
-        console.log('response', response.data);
+        //console.log('response', response.data);
 
         this.setState({
           analysis: response.data
         })
       });
 
-       // axios({
-       //   method: 'post',
-       //   url: 'http://localhost:8000/infer',
-       //   data: formData,
-       //   config: { headers: { 'Content-Type': 'multipart/form-data' } }
-       // });
 
     }
 
-     
 
   }
      
@@ -103,15 +82,15 @@ export default class ImageUpload extends React.Component {
   return (
     <div className="container">
 
-      <h1>Tell me about the brand I'm looking at</h1>
+      <h3>Tell me about the product I'm looking at</h3>
       <p className="lead">ML Recognition powered by Rust, Tensorflow, and Node.js.</p>
 
          <img 
           id="preview"
           ref={this.myRef}
           style={{
-            width: "10%",
-            height: "10%",
+            width: "20%",
+            height: "20%",
       
           }}
         /> 
@@ -122,14 +101,11 @@ export default class ImageUpload extends React.Component {
           <input type="file" className="form-control-file" id="image_file" name="image_file" onChange={this.onFileChange}/>
         </div>
 
-
         <button onClick={this.onFileUpload}> 
-                  Upload! 
+                  Analyze! 
         </button> 
 
       </form>
-
-
 
       <div className="jumbotron">
         <p id="result" className="lead">

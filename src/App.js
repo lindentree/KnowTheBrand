@@ -13,7 +13,7 @@ function App() {
       
       </header>
           <h3> 
-            Mission: We want users to understand where you are putting your money. Search a brand and learn more about the brand. You are, what you buy. Normally, we just know the brand name, but do we ever question who the brand is and who is behind it?
+            Mission: We want you to understand where you are putting your money. Search a brand and learn more about it. You are what you buy. Normally, we just know the brand name, but do we ever question who the brand is and who is behind it?
 
           </h3>
           <TextInput />
