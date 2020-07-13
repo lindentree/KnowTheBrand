@@ -4,9 +4,9 @@ To try it out, download this repo and run `npm install` in the terminal before r
 
 The data you receive from test queries will depend on what you make available in your local MongoDB; this feature is still a work in progress.
 
-You will need to install the Rust/WebAssembly toolchain to try out image upload/ML recognition feature. Detailed instructions here: https://rustwasm.github.io/wasm-pack/book/quickstart.html
+You will need to install the Rust/WebAssembly toolchain to try out the image upload/ML recognition feature. Detailed instructions here: https://rustwasm.github.io/wasm-pack/book/quickstart.html
 
-After you install all the tools, cd into `server/tensorflow` and run `wasm-pack build`. This should compile the necessary code for the Express server. This feature is only a demo version, although you can import/train your own Tensorflow models. 
+After you install all the tools, cd into `server/tensorflow` and run `wasm-pack build`. This should compile the necessary code imported into the Express server. This feature is only a demo version, although you can import/train your own Tensorflow models. 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
