@@ -1,6 +1,16 @@
+**KnowTheBrand** is a MERN stack web app that allows users to look up info about the brands they purchase.
+
+To try it out, download this repo and run `npm install` in the terminal before running `npm start`. You will also have to cd into the `server` folder in another terminal and follow the same steps there.
+
+The data you receive from test queries will depend on what you make available in your local MongoDB; this feature is still a work in progress.
+
+The image upload/ML recognition feature is only a demo version, although you can import/train your own Tensorflow models.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
+
+Yarn can be substituted for npm as the package manager if desired.
 
 In the project directory, you can run:
 
@@ -63,6 +73,6 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/ad
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
-### `yarn build` fails to minify
+### `npm build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
