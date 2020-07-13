@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const routes = require('./routes/index');
+require('dotenv').config();
 
 const fileUpload = require('express-fileupload');
 const { infer } = require('./tensorflow/pkg/ai_starter_lib.js');
