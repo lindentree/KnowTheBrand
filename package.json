@@ -27,7 +27,8 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "heroku-postbuild": "cd server && npm install && npm run start"
     },
     "eslintConfig": {
         "extends": "react-app"
@@ -44,13 +45,12 @@
             "last 1 safari version"
         ]
     },
-    "proxy": "http://localhost:8001",
     "devDependencies": {
         "@babel/core": "^7.10.4",
         "@babel/preset-env": "^7.10.4",
         "@babel/register": "^7.10.4"
     },
     "engines": {
-      "node": "10.16.3"
+        "node": "10.16.3"
     }
 }
