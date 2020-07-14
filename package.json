@@ -28,7 +28,7 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "heroku-postbuild": "cd server && npm install && cd tensorflow && wasn-pack build && cd .. && npm run start"
+        "heroku-postbuild": "cd server && npm install && cd tensorflow && wasm-pack build && cd .. && npm run start"
     },
     "eslintConfig": {
         "extends": "react-app"
