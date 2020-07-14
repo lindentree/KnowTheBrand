@@ -90,7 +90,7 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-const PORT = 8001;
+const PORT =  process.env.PORT || 8001;
 
 app.listen(PORT, function () {
   console.log(`Example app listening on port ${PORT}!`)
