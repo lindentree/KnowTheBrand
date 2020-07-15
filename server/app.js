@@ -2,9 +2,11 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 const logger = require('morgan');
 const routes = require('./routes/index');
 const brandCtrl = require('./controller/brands');
+
 
 require('dotenv').config();
 
@@ -35,9 +37,10 @@ require('./config/database');
 
 const app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, '../build')));
+
 
 app.use(fileUpload());
 
@@ -45,7 +48,6 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'build')));
 
 app.use('/api/food', routes);
 
@@ -87,14 +89,10 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send('Error');
 });
 
-const PORT =  process.env.PORT || 8001;
-
-app.listen(PORT, function () {
-  console.log(`Example app listening on port ${PORT}!`)
-})
+const PORT =  process.env.PORT || 8080;
 
 
 module.exports = app;
