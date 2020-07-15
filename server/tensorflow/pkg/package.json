@@ -1,0 +1,15 @@
+{
+  "name": "ai_starter",
+  "collaborators": [
+    "Linden Chiu"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "ai_starter_lib_bg.wasm",
+    "ai_starter_lib.js",
+    "ai_starter_lib.d.ts"
+  ],
+  "module": "ai_starter_lib.js",
+  "types": "ai_starter_lib.d.ts",
+  "sideEffects": false
+}
