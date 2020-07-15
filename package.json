@@ -22,7 +22,7 @@
         "xml2js": "^0.4.23"
     },
     "scripts": {
-        "start": "cd server && node -r esm ./bin/www",
+        "start": "cd server && npm i && node -r esm ./bin/www",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
